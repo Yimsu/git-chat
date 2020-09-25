@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GIF 채팅방</title>
+</head>
+<body>
+<div>F12를 눌러 console 탭과 network 탭을 확인하세요.</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io.connect('http://localhost:8005', {//io객체에 서버주소연결
+        path: '/socket.io',  //서버의 path옵션과 일치해야 통신이 가능
+        transports: ['websocket'],  //폴령연결 보다 먼저 웹소켓만 사용하고싶다면
+    });
+    socket.on('news', function (data) { //서버에서 보내는 news이벤트를 받기위해
+        console.log(data);
+        socket.emit('reply', 'Hello Node.JS');
+        console.log('44444444444')
+    });
+</script>
+</body>
+</html>
